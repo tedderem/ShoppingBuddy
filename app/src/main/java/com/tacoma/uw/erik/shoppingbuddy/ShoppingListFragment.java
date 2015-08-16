@@ -94,7 +94,12 @@ public class ShoppingListFragment extends ListFragment {
             sb.append(": ");
             sb.append("\n");
             sb.append(m.getDirections());
-            sb.append("\n\n");
+            sb.append("\n\nRequired Ingredients:\n");
+            for (Ingredient i : m.getIngredients()) {
+                sb.append(i.toString());
+                sb.append("\n");
+            }
+            sb.append("\n");
         }
 
         //create the intent and start.
