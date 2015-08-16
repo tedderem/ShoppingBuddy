@@ -1,10 +1,12 @@
 package com.tacoma.uw.erik.shoppingbuddy.model;
 
+import java.io.Serializable;
+
 /**
  * A class which represents an ingredient. An ingredient is made up of a name and an amount needed
  * of this ingredient.
  */
-public class Ingredient {
+public class Ingredient implements Serializable {
 
     /** The name of this ingredient. */
     private String myName;

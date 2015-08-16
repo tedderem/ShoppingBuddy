@@ -9,6 +9,9 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+/**
+ * Main Activity which handles the fragments of the application for the Shopping Buddy app.
+ */
 public class MainActivity extends FragmentActivity {
 
     @Override
@@ -16,8 +19,10 @@ public class MainActivity extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        ListFragment fragment = new MealFragment();
         FragmentTransaction fragmentTransaction =
                 getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.add(R.id.fragment_container, fragment).commit();
     }
 
     @Override

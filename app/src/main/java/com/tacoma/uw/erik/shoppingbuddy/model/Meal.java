@@ -1,5 +1,6 @@
 package com.tacoma.uw.erik.shoppingbuddy.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,7 +8,7 @@ import java.util.List;
  * A class that represents a Meal including the various descriptors and the ingredients necessary
  * to create this meal.
  */
-public class Meal {
+public class Meal implements Serializable {
 
     /**
      * The name of this meal.
@@ -25,6 +26,11 @@ public class Meal {
     private String myDirections;
 
     /**
+     * The difficulty of this meal.
+     */
+    private int myDifficulty;
+
+    /**
      * The number of people this meal can serve.
      */
     private String myServes;
@@ -40,9 +46,15 @@ public class Meal {
     private String myCuisineType;
 
     /**
+     * Boolean to depict if this meal was selected by the user.
+     */
+    private Boolean mySelected;
+
+    /**
      * A list of ingredients that this meal requires.
      */
     private List<Ingredient> myIngredients;
+    private int difficulty;
 
     /**
      * Constructor of a new meal.
@@ -54,14 +66,16 @@ public class Meal {
      * @param createdBy Who created this meal.
      * @param cuisineType The cuisine type of this meal.
      */
-    public Meal(final String name, final int ID, final String directions, final String serves,
-                final String createdBy, final String cuisineType) {
+    public Meal(final String name, final int ID, final String directions, final int difficulty,
+                final String serves, final String createdBy, final String cuisineType) {
         myName = name;
         myID = ID;
         myDirections = directions;
         myServes = serves;
         myCreateBy = createdBy;
         myCuisineType = cuisineType;
+        myDifficulty = difficulty;
+        mySelected = false;
 
         myIngredients = new ArrayList<>();
     }
@@ -73,6 +87,19 @@ public class Meal {
      */
     public void addIngredient(final Ingredient theIng) {
         myIngredients.add(theIng);
+    }
+
+    /**
+     * Method which sets that this meal was selected (or unselected) to be included in shopping list.
+     *
+     * @param selectedState The state of the meal selection.
+     */
+    public void setSelected(final Boolean selectedState) {
+        mySelected = selectedState;
+    }
+
+    public boolean getSelected() {
+        return mySelected;
     }
 
     /**
@@ -123,6 +150,15 @@ public class Meal {
      */
     public String getCuisineType() {
         return myCuisineType;
+    }
+
+    /**
+     * Getter method for this meal's difficulty.
+     *
+     * @return an int representing the meals difficulty.
+     */
+    public int getDifficulty() {
+        return myDifficulty;
     }
 
     /**
