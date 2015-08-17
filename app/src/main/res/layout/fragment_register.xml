@@ -1,0 +1,73 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.tacoma.uw.erik.shoppingbuddy.RegisterFragment">
+
+    <EditText
+        android:hint="@string/desired_username_hint"
+        android:id="@+id/username_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"/>
+
+    <EditText
+        android:hint="@string/password_create_hint"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:id="@+id/password_input"
+        android:layout_below="@+id/username_text"
+        android:layout_alignLeft="@+id/username_text"
+        android:layout_alignStart="@+id/username_text"
+        android:layout_alignRight="@+id/username_text"
+        android:layout_alignEnd="@+id/username_text" />
+
+    <EditText
+        android:hint="@string/password_reenter_hint"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:id="@+id/password_reinput"
+        android:layout_below="@+id/password_input"
+        android:layout_alignLeft="@+id/password_input"
+        android:layout_alignStart="@+id/password_input"
+        android:layout_alignRight="@+id/password_input"
+        android:layout_alignEnd="@+id/password_input" />
+
+    <EditText
+        android:hint="@string/email_hint"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textEmailAddress"
+        android:ems="10"
+        android:id="@+id/email_input"
+        android:layout_below="@+id/password_reinput"
+        android:layout_alignLeft="@+id/password_reinput"
+        android:layout_alignStart="@+id/password_reinput"
+        android:layout_alignRight="@+id/password_reinput"
+        android:layout_alignEnd="@+id/password_reinput" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/registration_title"
+        android:textSize="50sp"
+        android:id="@+id/textView2"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:gravity="center_horizontal"
+        android:textStyle="bold" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/create_account_button"
+        android:id="@+id/create_button"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+
+</RelativeLayout>

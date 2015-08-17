@@ -48,12 +48,16 @@ public class MealFragment extends ListFragment {
     /** The list containing all the meals. */
     private ArrayList<Meal> myMealList;
 
+    /** Reference to the meal adapter. */
+    private MealAdapter myAdapter;
+
     /**
      * Default, no-argument constructor for the fragment.
      */
     public MealFragment() {
         // Required empty public constructor
     }
+
 
     /**
      * {@inheritDoc}
@@ -63,23 +67,6 @@ public class MealFragment extends ListFragment {
     @Override
     public void onStart() {
         super.onStart();
-
-        //Set up list view and meal list and button
-        if (getView() != null) {
-            myListView = (ListView) getView().findViewById(android.R.id.list);
-            myMealList = new ArrayList<>();
-
-            Button button = (Button) getView().findViewById(R.id.create_list_button);
-
-            button.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    prepIngredients();
-                }
-            });
-        }
-        //retrieve all the meals from the database
-        new GetMealsWebTask().execute(MEAL_URL);
     }
 
     /**
@@ -99,12 +86,50 @@ public class MealFragment extends ListFragment {
         Bundle b = new Bundle();
         b.putSerializable(getString(R.string.shopping_list_bundle), shoppingList);
 
+        //create the fragment and launch.
         ListFragment fragment = new ShoppingListFragment();
         fragment.setArguments(b);
         getActivity().getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fragment_container, fragment)
                 .addToBackStack(null)
                 .commit();
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle bundle) {
+        bundle.putSerializable("myMeals", myMealList);
+        super.onSaveInstanceState(bundle);
+    }
+
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState)
+    {
+        super.onActivityCreated(savedInstanceState);
+        //Set up list view and meal list and button
+        if (getView() != null) {
+            myListView = (ListView) getView().findViewById(android.R.id.list);
+            myMealList = new ArrayList<>();
+
+            Button button = (Button) getView().findViewById(R.id.create_list_button);
+
+            button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    prepIngredients();
+                }
+            });
+        }
+
+        //check the state of the fragment and act accordingly
+        if(savedInstanceState != null) {
+            myMealList = (ArrayList<Meal>) savedInstanceState.getSerializable("myMeals");
+            myAdapter = new MealAdapter(myMealList, getActivity().getApplicationContext());
+            myListView.setAdapter(myAdapter);
+        } else {
+            myMealList = new ArrayList<Meal>();
+            //retrieve all the meals from the database
+            new GetMealsWebTask().execute(MEAL_URL);
+        }
     }
 
 
@@ -192,6 +217,7 @@ public class MealFragment extends ListFragment {
 
             // Parse JSON
             try {
+                myMealList.clear();
                 JSONArray array = new JSONArray(s);
 
                 for (int i = 0; i < array.length(); i++) {
@@ -208,8 +234,8 @@ public class MealFragment extends ListFragment {
                     Meal m = new Meal(name, id, directions, difficulty, serves, createdBy, cuisine);
                     myMealList.add(m);
                 }
-                MealAdapter adapter = new MealAdapter(myMealList, getActivity());
-                myListView.setAdapter(adapter);
+                myAdapter = new MealAdapter(myMealList, getActivity());
+                myListView.setAdapter(myAdapter);
                 updateMealIngredients();
 
             } catch (Exception e) {

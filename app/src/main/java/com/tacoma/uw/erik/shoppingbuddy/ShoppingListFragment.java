@@ -65,22 +65,6 @@ public class ShoppingListFragment extends ListFragment {
         }
     }
 
-    @Override
-    public void onListItemClick(ListView l, View v, int position, long id) {
-        super.onListItemClick(l, v, position, id);
-
-        TextView name = (TextView) v.findViewById(R.id.ingredient_name_view);
-        TextView amount = (TextView) v.findViewById(R.id.amount_text_view);
-
-        if (name.getPaintFlags() == (name.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG)) {
-            name.setPaintFlags(name.getPaintFlags() & (~Paint.STRIKE_THRU_TEXT_FLAG));
-            amount.setPaintFlags(name.getPaintFlags() & (~Paint.STRIKE_THRU_TEXT_FLAG));
-        } else {
-            name.setPaintFlags(name.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
-            amount.setPaintFlags(name.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
-        }
-    }
-
     /**
      * Method for setting up the intent to save the directions.
      */

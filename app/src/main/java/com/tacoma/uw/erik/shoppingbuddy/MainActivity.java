@@ -14,15 +14,27 @@ import android.view.MenuItem;
  */
 public class MainActivity extends FragmentActivity {
 
+    /**
+     * {@inheritDoc}
+     * Launches the log-in screen.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ListFragment fragment = new MealFragment();
-        FragmentTransaction fragmentTransaction =
-                getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.add(R.id.fragment_container, fragment).commit();
+        //ensure that the view is not null
+        if(findViewById(R.id.fragment_container) != null) {
+            //check if app was already running to avoid odd behavior
+            if (savedInstanceState != null) {
+                return;
+            }
+            ListFragment fragment = new MealFragment();
+            FragmentTransaction fragmentTransaction =
+                    getSupportFragmentManager().beginTransaction();
+            fragmentTransaction.replace(R.id.fragment_container, fragment).commit();
+
+        }
     }
 
     @Override

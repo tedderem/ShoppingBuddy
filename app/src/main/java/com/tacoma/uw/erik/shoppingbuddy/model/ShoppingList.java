@@ -36,13 +36,14 @@ public class ShoppingList implements Serializable {
         for (Meal m : myMeals) {
             for (Ingredient i : m.getIngredients()) {
                 if (temp.containsKey(i.getName())) {
-                    temp.put(i.getName(), temp.get(i.getName()) + "\n" + i.getAmount());
+                    temp.put(i.getName(), temp.get(i.getName()) + "\n" + m.getName() + " uses " + i.getAmount());
                 } else {
-                    temp.put(i.getName(), i.getAmount());
+                    temp.put(i.getName(), m.getName() + " uses " + i.getAmount());
                 }
             }
         }
 
+        //Go through the hash map and construct the ingredientlist array.
         for (String s : temp.keySet()) {
             IngredientList l = new IngredientList(s, temp.get(s));
             myIngredients.add(l);
@@ -58,6 +59,10 @@ public class ShoppingList implements Serializable {
         return myMeals;
     }
 
+    /**
+     * Getter method for the list of ingredients of this shopping list.
+     * @return A list of IngredientList items for this shopping list.
+     */
     public List<IngredientList> getIngredients() {
         return myIngredients;
     }
