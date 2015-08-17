@@ -2,18 +2,13 @@ package com.tacoma.uw.erik.shoppingbuddy;
 
 
 import android.content.Intent;
-import android.graphics.Paint;
 import android.os.Bundle;
-import android.app.Fragment;
 import android.support.v4.app.ListFragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import com.tacoma.uw.erik.shoppingbuddy.control.IngredientAdapter;
 import com.tacoma.uw.erik.shoppingbuddy.model.Ingredient;
@@ -21,7 +16,6 @@ import com.tacoma.uw.erik.shoppingbuddy.model.Meal;
 import com.tacoma.uw.erik.shoppingbuddy.model.ShoppingList;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 
 /**
@@ -43,6 +37,11 @@ public class ShoppingListFragment extends ListFragment {
         // Required empty public constructor
     }
 
+    /**
+     * {@inheritDoc}
+     *
+     * Sets the shopping list ingredients to be shown.
+     */
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);

@@ -4,13 +4,16 @@
 
     <string name="guest_button">Guest</string>
     <string name="login_button">Login</string>
-    <string name="login_hint">Enter Your Username Here</string>
-    <string name="password_hint">Enter Your Password Here</string>
+    <string name="login_hint">Enter Your Username</string>
+    <string name="password_hint">Enter Your Password</string>
     <string name="register_label">Create An Account</string>
     <string name="password_reenter_hint">Re-Enter Password</string>
     <string name="email_hint">Enter Your Email</string>
     <string name="password_create_hint">Enter Password</string>
-    <string name="desired_username_hint">Enter Your Desired Username</string>
+    <string name="desired_username_hint">Enter Desired Username</string>
     <string name="create_account_button">Create Account</string>
     <string name="registration_title">Create A New Account</string>
+    <string name="SHARED_PREFS">com.tacoma.uw.erik.shoppingbuddy.PREFS</string>
+    <string name="LOGGEDIN">loggedin</string>
+    <string name="logout">Logout</string>
 </resources>

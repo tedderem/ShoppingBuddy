@@ -3,7 +3,6 @@ package com.tacoma.uw.erik.shoppingbuddy;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.app.Fragment;
 import android.support.v4.app.ListFragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -101,6 +100,11 @@ public class MealFragment extends ListFragment {
         super.onSaveInstanceState(bundle);
     }
 
+    /**
+     * {@inheritDoc}
+     *
+     * Sets the Meals to be shown in the app.
+     */
     @Override
     public void onActivityCreated(Bundle savedInstanceState)
     {
@@ -126,7 +130,7 @@ public class MealFragment extends ListFragment {
             myAdapter = new MealAdapter(myMealList, getActivity().getApplicationContext());
             myListView.setAdapter(myAdapter);
         } else {
-            myMealList = new ArrayList<Meal>();
+            myMealList = new ArrayList<>();
             //retrieve all the meals from the database
             new GetMealsWebTask().execute(MEAL_URL);
         }
